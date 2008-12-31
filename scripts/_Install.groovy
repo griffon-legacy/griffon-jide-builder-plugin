@@ -1,7 +1,7 @@
 //
 // This script is executed by Griffon after plugin was installed to project.
 
-// check to see if we already have a SwingX Builder
+// check to see if we already have a Jide Builder
 ConfigSlurper configSlurper = new ConfigSlurper()
 o = configSlurper.parse(new File("${basedir}/griffon-app/conf/Builder.groovy").toURL())
 boolean builderIsSet
