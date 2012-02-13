@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2010 the original author or authors.
+ * Copyright 2009-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,11 @@
  * @author Andres Almiray
  */
 
-
-// check to see if we already have a Jide Builder
-boolean builderIsSet
-builderConfig.each() { prefix, v ->
-    v.each { builder, views ->
-        builderIsSet = builderIsSet || 'griffon.builder.jide.JideBuilder' == builder
-    }
-}
-
-if (!builderIsSet) {
+// check to see if we already have a JideBuilder
+def configText = """root.'griffon.builder.jide.JideBuilder'.view = '*'"""
+if(!(builderConfigFile.text.contains(configText))) {
     println 'Adding JideBuilder to Builder.groovy'
-    builderConfigFile.append('''
-root.'griffon.builder.jide.JideBuilder'.view = '*'
-''')
+    builderConfigFile.append("""
+$configText
+""")
 }
